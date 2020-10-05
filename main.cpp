@@ -2,24 +2,36 @@
 using namespace std;
 
 struct box {
-    int v;
+    char nombre;
+    char apellido;
+    int numExpediente;
+    String fecha;
     box *sgt;
 };
-box *i,*f=NULL;
+box *i;
+box *f=NULL;
 box *a;
 
-void eQ(int x){
+void eQ(char nombre, char apellido, int numExpediente, String fecha){
+    box *a=new box;
     if(f==NULL){
-        box *a=new box;
-        a->v=x;
+        a->nombre=nombre;
+        a->apellido=apellido;
+        a->numExpediente=numExpediente;
+        a->fecha=fecha;
         a->sgt=NULL;
-        f=a;i=f;
+        f=a;
+        i=f;
     }else{
-       box *a= new box;
        f->sgt=a;
-       a->v=x,a->sgt=NULL;
+       a->nombre=nombre;
+       a->apellido=apellido;
+       a->numExpediente=numExpediente;
+       a->fecha=fecha;
+       a->sgt=NULL;
        f=a;
     }
+
 }
 void dQ(){
     if(i==NULL)
@@ -37,21 +49,32 @@ void dQ(){
 
 void prt() {
     a = i;
-    if (i == NULL)
+    if (a == NULL)
         cout << "Vacia nada que imprimir";
     else
         while (a != NULL)
-            cout << a->v << " -> ", a = a->sgt;
+            cout << a->nombre;
+            cout << a->apellido;
+            cout << a->numExpediente;
+            cout << a->fecha;
+            a = a->sgt;
 }
 int main(){
-    int op, x;
+    int op;
     do{
         cout<<"\n(1) Push    (2) Pop    (3) Print   (4) Salir \n ";
         cout<<"\n Elija ppcion  ?: ",cin>>op;
         switch (op){
             case 1:
-                cout<<"Ingresa el valor a insertar en el Stack : ??  ",cin>>x;
-                eQ(x);
+                char n;
+                cout<<"Nombre: ??  ",cin>>n;
+                char a;
+                cout<<"Apellido: ??  ",cin>>a;
+                String f;
+                cout<<"Fecha: ??  ",cin>>f;
+                int nE;
+                cout<<"numExpediente: ??  ",cin>>nE;
+                eQ(n, a, f, nE);
                 break;
             case 2:
                 cout<<"Eliminando ..... : ";
